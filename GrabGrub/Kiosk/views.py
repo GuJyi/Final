@@ -121,12 +121,10 @@ def view_food_items(request):
     return render(request, "Kiosk/view_food_items.html", {'foods':food_objects})
 
 def update_food_item(request, pk):
-    now = datetime.now()
     if(request.method == "POST"):
         name = request.POST.get("name")
         description = request.POST.get("description")
         price = request.POST.get("price")
-        created_at = now
 
         #Make a list of all Food objects, lowercase each object and append to flistlower if it is equal to lowercase of name
         namelower = name.lower()
@@ -134,13 +132,12 @@ def update_food_item(request, pk):
         flistlower = []
         for fobject in flist:
             fobjectlower = fobject.getName().lower()
-            if(fobjectlower==namelower):
-                flistlower.append(fobjectlower)
+            flistlower.append(fobjectlower)
 
         oldFood = Food.objects.get(pk=pk)
 
         #If name is the same
-        if(namelower == oldFood.getName()):
+        if(namelower == oldFood.getName().lower()):
             #If descrption, and price are the same
             if(description == oldFood.getDesc() and price == str(oldFood.getPrice())):
                 f = get_object_or_404(Food, pk=pk)
@@ -148,19 +145,19 @@ def update_food_item(request, pk):
                 return render(request, "Kiosk/update_food_item.html", {'f':f})
             #If description and price are not the same
             else:
-                Food.objects.filter(pk=pk).update(description=description, price=price, created_at=created_at)
+                Food.objects.filter(pk=pk).update(description=description, price=price)
                 messages.info(request, "Successfully updated food item")
                 return redirect('view_food_items')
 
         #If name already exists in flistlower
-        elif(len(flistlower) > 0):
+        elif(namelower in flistlower):
             f = get_object_or_404(Food, pk=pk)
             messages.error(request, 'Food item already exists')
             return render(request, "Kiosk/update_food_item.html", {'f':f})
         
         #If name does not exist in flistlower
         else:
-            Food.objects.filter(pk=pk).update(name=name, description=description, price=price, created_at=created_at)
+            Food.objects.filter(pk=pk).update(name=name, description=description, price=price)
             messages.info(request, 'Successfully updated food item')
             return redirect('view_food_items')
 
@@ -221,13 +218,12 @@ def update_customer_details(request, pk):
         clistlower = []
         for cobject in clist:
             cobjectlower = cobject.getName().lower()
-            if(cobjectlower==namelower):
-                clistlower.append(cobjectlower)
-        
+            clistlower.append(cobjectlower)
+
         oldCustomer = Customer.objects.get(pk=pk)
         
         #If name is the same
-        if(namelower in clistlower):
+        if(namelower == oldCustomer.getName().lower()):
             #If address and city are the same
             if(address == oldCustomer.getAddress() and city == oldCustomer.getCity()):
                 messages.error(request, "Supplied details are identical")
@@ -240,7 +236,7 @@ def update_customer_details(request, pk):
                 return redirect('view_customers')
 
         #If name already exists in clistlower
-        elif(len(clistlower)>0):
+        elif(namelower in clistlower):
             messages.error(request, 'Customer name is taken')
             c = get_object_or_404(Customer, pk=pk)
             return render(request, "Kiosk/update_customer_details.html", {'c':c})
