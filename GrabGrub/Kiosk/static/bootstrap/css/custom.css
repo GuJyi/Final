@@ -65,7 +65,8 @@ hr {
     height: 645px;
     justify-content: center;
     align-items: center;
-  }
+}
+
 .login-card{
     position: relative;
     display: -ms-flexbox;
