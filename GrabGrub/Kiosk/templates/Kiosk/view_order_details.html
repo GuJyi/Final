@@ -62,7 +62,8 @@
                             </div>
                             <div class="row justify-content-center justify-content-sm-around mt-4">
                                 <a href="{% url 'update_order_details' pk=o.pk%}" class="btn btn-warning w-100 mx-2 mb-3">Update</a>
-                                <a href="{% url 'confirm_delete_order' pk=o.pk %}" class="btn btn-danger w-100 mx-2">Delete</a>
+                                <a href="{% url 'confirm_delete_order' pk=o.pk %}" class="btn btn-danger w-100 mx-2 mb-3">Delete</a>
+                                <a href="{% url 'homepage' %}" class="btn btn-secondary w-100 mx-2">Back</a>
                             </div>
                         </div>
                     </div>
