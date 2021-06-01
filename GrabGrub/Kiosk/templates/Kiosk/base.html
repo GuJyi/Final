@@ -1,0 +1,82 @@
+{% load static %}
+
+<html lang="en">
+    <head>
+        <title>Test</title>
+        <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static '/bootstrap/css/custom.css' %}">
+    </head>
+    <body class="body-bg">
+        <div class="row">
+            <!-- SIDEBAR -->
+            <div class="col-1">
+                <div class="sidebar shadow-lg pos-fixed">
+                    <div class="col">
+                        {% block sidecontent %}
+                        <!-- ORDERS -->
+                        <div class="row justify-content-center">
+                            <a href="{% url 'homepage' %}" class="zoom" title="Orders">
+                                <img src="{% static '/images/order.png' %}" class="h-50p" alt="">
+                            </a>
+                        </div>
+                        <!-- HR -->
+                        <div class="row justify-content-center">
+                            <hr>
+                        </div>
+                        <!-- FOOD ITEMS -->
+                        <div class="row justify-content-center">
+                            <a href="{% url 'view_food_items' %}" class="zoom" title="Food Items">
+                                <img src="{% static '/images/food.png' %}" class="h-50p" alt="">
+                            </a>
+                        </div>
+                        <!-- HR -->
+                        <div class="row justify-content-center">
+                            <hr>
+                        </div>
+                        <!-- CUSTOMERS -->
+                        <div class="row justify-content-center">
+                            <a href="{% url 'view_customers' %}" class="zoom" title="Customers">
+                                <img src="{% static '/images/customer.png' %}" class="h-50p" alt="">
+                            </a>
+                        </div>
+                        <!-- SIDEBAR FOOTER LOGOS -->
+                        <div class="lower_container">
+                            <!-- LOGOUT -->
+                            <div class="row justify-content-flex-end justify-content-center">
+                                <a href="{% url 'login' %}" class="zoom" title="Log out">
+                                    <img src="{% static '/images/log_out.png' %}" class="h-50p" alt="">
+                                </a>
+                            </div>
+                            <!-- GRABGRUB LOGO -->
+                            <div class="row justify-content-flex-end justify-content-center pt-5">
+                                <img src="{% static '/images/logo_final.png' %}" class="h-75p" alt="">
+                            </div>
+                        </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <!-- BODY -->
+            <div class="col-11">
+                <!-- HEADER -->
+                <div class="row header justify-content-center align-items-center text-white shadow">
+                    <img src="{% static '/images/logo_header.png' %}" class="h-100" alt="">
+                </div>
+                <!-- CONTENT -->
+                <div class="container-custom">
+                    <div class="card-body">
+                        <!-- MESSAGES -->
+                        <div class="row">
+                            {% include 'Kiosk/messages.html' %}
+                        </div>
+                        {% block bodyspace %}
+                        <div class="row h-100 justify-content-center align-items-center">
+                        {% endblock %}
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

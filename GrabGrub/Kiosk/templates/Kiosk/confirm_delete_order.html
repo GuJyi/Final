@@ -1,0 +1,37 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+            <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+            <div class="card shadow mt-5" style="width:500px; border-radius: 25px;">
+                <div class="card-header bg-danger text-center text-white" style="border-top-left-radius: 25px; border-top-right-radius:25px;">
+                    <div class="row card-title justify-content-center">
+                        Are you sure you want to delete
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col mb-3">
+                            <h3>{{ o.qty|floatformat:0 }} pc(s). of {{o.food.name}} ordered by {{o.cust_order.name}}?</h3>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6">
+                            <a href="{% url 'delete_order' pk=o.pk %}" class="btn btn-outline-danger w-100">Confirm</a>
+                        </div>
+                        <div class="col-6">
+                            <a href="{% url 'view_order_details' pk=o.pk %}" class="btn btn-outline-info w-100">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </body>
+</html>

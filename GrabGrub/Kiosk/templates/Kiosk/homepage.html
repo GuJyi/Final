@@ -1,0 +1,47 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+            <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+            <div class="row mb-3">
+                <div class="col-4">
+                    <a href="{% url 'add_order' %}" class="btn btn-outline-info">Add Order</a>
+                </div>
+                <div class="col-8">
+                    <h3 class="ml-5 pl-4">Orders</h3>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-striped" style="border:rgb(243,145,54) solid 2px; table-layout:fixed; width: 800px;">
+                    <thead>
+                        <th style="width:50px;">#</th>
+                        <th>Customer Name</th>
+                        <th>Name of Dish</th>
+                        <th>Date of Order</th>
+                        <th style="width:70px;" class="text-center">View Details</th>
+                    </thead>
+                    <tbody>
+                        {% for o in orders %}
+                        <tr>
+                            <td>{{o.pk}}</td>
+                            <td>{{o.cust_order.name}}</td>
+                            <td>{{o.food.name}}</td>
+                            <td>{{o.ordered_at}}</td>
+                            <td class="text-center"><a href="{% url 'view_order_details' pk=o.pk %}">
+                                <img src="{% static '/images/view_details.png' %}" class="h-25p" alt="">
+                            </a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endblock %}
+    </body>
+</html>

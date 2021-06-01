@@ -1,0 +1,88 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+        <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+        <div class="card shadow" style="width:500px; border-radius: 25px;">
+            <div class="card-header bg-info text-center text-white" style="border-top-left-radius: 25px; border-top-right-radius:25px;">
+                <div class="row card-title justify-content-center">
+                    <h3 class="mt-3">Add Order</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <div class="text-center">
+                            Input the following details to add your order:
+                        </div>
+                        
+                        <br>
+                        <!-- Form -->
+                        <form action="{% url 'add_order' %}" method="POST"> {% csrf_token %}
+
+                            <!-- Customer Drop down -->
+                            <label for="customer"> <b>  Name of Customer </b> </label>
+                            <select class="form-control" name="customer" id="customer" required>
+                                    <option value="" disabled selected>- - - select customer name - - -</option>
+                                {% for c in customers %}
+                                    <option value="{{c.pk}}">{{c.name}}</option>
+                                {% endfor %}
+                            </select>
+
+                            <br>
+
+                            <!-- Food Drop down -->
+                            <label for="food"> <b> Name of Dish </b> </label>
+                            <select class="form-control" name="food" id="food" required>
+                                    <option value="" selected disabled>- - - select name of dish - - -</option>
+                                {% for f in food %}
+                                    <option value="{{f.pk}}">{{f.name}}</option>
+                                {% endfor %}
+                            </select>
+                            
+                            <br>
+
+                            <!-- Quantity of Food -->
+                            <label for="quantity"> <b> Quantity: </b>  </label>
+                            <div class="input-group mb-3">
+                                <input type="number" name=quantity id=quantity class="w-75 form-control" required min=0>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">pc(s).</span>
+                                </div>
+                            </div>
+            
+                            <br>
+
+                            <!-- Payment Mode -->
+                            <label for="payment"> <b>  Payment Mode: </b> </label>
+                            <select class="form-control" name="payment" id="payment" required>
+                                <option value="" selected disabled>- - - select payment mode - - -</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                            </select>
+                            
+                            <br>
+
+                            <!-- Submit Button -->
+                            <div class="row justify-content-center m">
+                                <div class="col-6">
+                                    <input type="submit" value="Add Order" class="btn btn-outline-info w-100">
+                                </div>
+                                <div class="col-6">
+                                    <a href="{% url 'homepage' %}" class="btn btn-outline-danger w-100">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,67 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block content %}
+        <div class="card shadow" style="width:500px; border-radius: 25px;">
+            <div class="card-header bg-info text-center text-white" style="border-top-left-radius: 25px; border-top-right-radius:25px;">
+                <div class="row card-title justify-content-center">
+                    <h3 class="mt-3">Add Food Item</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <!-- Instructions -->
+                        <div class="text-center">
+                            Input the following details to add your food item:
+                        </div>
+
+                        <br>
+                        <!-- Form -->
+                        <form action="{% url 'add_food_item' %}" method="POST"> {% csrf_token %}
+                            <div class="col">
+
+                            <!-- Name of Dish -->
+                            <label for="name"> <b>Name of Dish:</b> </label>
+                            <input type="text" name="name" id="name" class="w-100 form-control" required>
+
+                            <br>
+
+                            <!-- Description -->
+                            <label for="description"> <b> Description: </b> </label>
+                            <input type="text" name="description" id="description" class="w-100 form-control" required>
+                            
+                            <br>
+
+                            <!-- Price -->
+                            <label for="price"> <b> Price: </b> </label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">₱</span>
+                                </div>
+                                <input type="number" name="price" id="price" class="w-75 form-control" required min=0 step=0.01>
+                            </div>
+
+                            <br>
+
+                                <!-- Submit Button -->
+                            <div class="row justify-content-center m">
+                                <div class="col-6">
+                                    <input type="submit" value="Add Food Item" class="btn btn-outline-danger w-100">
+                                </div>
+                                <div class="col-6">
+                                    <a href="{% url 'view_food_items' %}" class="btn btn-outline-info w-100">Cancel</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

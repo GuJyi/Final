@@ -1,0 +1,82 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+            <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+        <div class="row w-100">
+            <div class="col-2 mt-4">
+                <div class="row justify-content-center align-content-center h-100">
+                    {% if start != o.pk %}
+                    <a href="{% url 'view_order_details' pk=prevValue %}" class="zoom" title="Previous Order"> <img src="{% static '/images/prev-arrow.png' %}" class="h-50p" alt=""></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="row ml--7 text-info">
+                    Order No.
+                </div>
+                <div class="row">
+                    <div class="card shadow" style="width:700px;">
+                        <div class="card-header bg-info text-white text-center">
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="row">
+                                        <h2 class="ml-4">{{o.pk}}</h2>
+                                    </div>
+                                </div>
+                                <div class="col-10">
+                                    Customer
+                                    <br>
+                                    <h5 class="text-center">{{o.cust_order.name}}</h5>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="row justify-content-center mt-4">
+                                <img src="{% static '/images/food_view.png' %}" alt="">
+                            </div>
+                            <div class="row">
+                                <hr class="bg-dark w-25">
+                            </div>
+                            <div class="row justify-content-center">
+                                <h3>{{o.food.name}}</h3>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p> <b>  Quantity: </b> </p>
+                                    <p> <b>  Ordered at: </b> </p>
+                                    <p> <b>  Payment mode: </b> </p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="text-right"> {{ o.qty|floatformat:0 }} pc(s).</p>
+                                    <p class="text-right"> {{o.ordered_at}}</p>
+                                    <p class="text-right"> {{o.payment_mode}}</p>
+                                </div>
+                            </div>
+                            <div class="row justify-content-center justify-content-sm-around mt-4">
+                                <a href="{% url 'update_order_details' pk=o.pk%}" class="btn btn-warning w-100 mx-2 mb-3">Update</a>
+                                <a href="{% url 'confirm_delete_order' pk=o.pk %}" class="btn btn-danger w-100 mx-2">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 mt-4">
+                <div class="row justify-content-center align-content-center h-100">
+                    {% if end != o.pk %}
+                    <a href="{% url 'view_order_details' pk=nextValue %}" class="zoom" title="Next Order"> <img src="{% static '/images/next-arrow.png' %}" class="h-50p" alt=""></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

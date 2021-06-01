@@ -1,0 +1,47 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+            <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+        <div class="row justify-content-center mb-3">
+            <h3>Customers</h3>
+        </div>
+        <div class="row">
+            <table class="table table-striped" style="border:rgb(243,145,54) solid 2px; table-layout:fixed; width: 800px;">
+                <thead>
+                    <th style="width:50px;">#</th>
+                    <th>Name</th>
+                    <th style="width:200px;">Address</th>
+                    <th>City</th>
+                    <th style="width:70px;" class="text-center">Update</th>
+                    <th style="width:70px;" class="text-center">Delete</th>
+                </thead>
+                <tbody>
+                    {% for c in customers %}
+                    <tr>
+                        <td>{{c.pk}}</td>
+                        <td>{{c.name}}</td>
+                        <td style="word-wrap:break-word;">{{c.address}}</td>
+                        <td>{{c.city}}</td>
+                        <td class="text-center"><a href="{% url 'update_customer_details' pk=c.pk %}" class="btn">
+                            <img src="{% static '/images/update.png' %}" alt="" class="h-25p">
+                        </a></td>
+                        <td class="text-center"><a href="{% url 'confirm_delete_customer' pk=c.pk %}" class="btn">
+                            <img src="{% static '/images/delete.png' %}" alt="" class="h-25p">
+                        </a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% endblock %}
+    </body>
+</html>

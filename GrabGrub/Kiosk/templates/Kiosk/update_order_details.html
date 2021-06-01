@@ -1,0 +1,98 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+<html lang="en">
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block content %}
+        <div class="col">
+            <div class="row ml--7 text-info">
+                Order No.
+            </div>
+            <div class="row">
+                <div class="card shadow" style="width:500px;">
+                    <div class="card-header bg-info text-white text-center">
+                        <div class="row">
+                            <div class="col-1">
+                                <div class="row">
+                                    <h2 class="ml-4">{{o.pk}}</h2>
+                                </div>
+                            </div>
+                            <div class="col-10">
+                                Customer
+                                <br>
+                                <h5 class="text-center">{{o.cust_order.name}}</h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body">
+                        <p class="text-center">Please update the following details:</p>
+                        <div class="row justify-content-center mt-4">
+                            <img src="{% static '/images/food_view.png' %}" alt="">
+                        </div>
+                        <div class="row">
+                            <hr class="bg-dark w-25">
+                        </div>
+                        <div class="row justify-content-center">
+                            <h3>{{o.food.name}}</h3>
+                        </div>
+                        <div class="row mt-3">
+                            <!-- LABELS -->
+                            <div class="col-6">
+                                
+                                <!-- QUANTITY -->
+                                <label for="qty" class="mt-2"> <b>Quantity:</b> </label>
+
+                                <!-- ORDERED AT -->
+                                <p class="mt-3"> <b>  Ordered at: </b> </p>
+
+                                <!-- PAYMENT MODE -->
+                                <label for="payment" class="mt-2"> <b> Payment Mode: </b> </label>
+                            </div>
+                            <!-- CONTENT -->
+                            <div class="col-6">
+                                <form action="{% url 'update_order_details' pk=o.pk %}" method="POST"> {% csrf_token %}
+                                
+                                <!-- QUANTITY -->
+                                <div class="input-group mb-3">
+                                    <input type="number" name="qty" id="qty" value="{{ o.qty|floatformat:0 }}" class="form-control" required>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">pc(s).</span>
+                                      </div>
+                                </div>
+                
+                                <!-- ORDERED AT -->
+                                <p class="mt-3 ml-1"> {{o.ordered_at}}</p>
+
+                                <!-- PAYMENT MODE -->
+                                <select class="form-control" name="payment" id="payment">
+                                    {% if o.payment_mode == "Cash" %}
+                                        <option value="Cash" selected>Cash</option>
+                                        <option value="Card">Card</option>
+                                    {% else %}
+                                        <option value="Cash">Cash</option>
+                                        <option value="Card" selected>Card</option>
+                                    {% endif %}
+                                </select>
+                            </div>     
+                        </div>
+                        <!-- BUTTONS -->
+                        <div class="row justify-content-center justify-content-sm-around mt-4">
+
+                            <!-- UPDATE ORDER BUTTON -->
+                            <input type="submit" value="Update Order" class="btn btn-warning w-100 mx-2 mb-3">
+
+                            <!-- CANCEL -->
+                            <a href="{% url 'view_order_details' pk=o.pk %}" class="btn btn-danger w-100 mx-2">Cancel</a>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>

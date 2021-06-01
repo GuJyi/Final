@@ -1,0 +1,53 @@
+{% extends 'Kiosk/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+        {% block bodyspace %}
+            <div class="row justify-content-center"></div>
+        {% endblock %}
+        {% block content %}
+            <div class="row mb-3">
+                <div class="col-4">
+                    <a href="{% url 'add_food_item' %}" class="btn btn-outline-info">Add Food Item</a>
+                </div>
+                <div class="col-8">
+                    <h3 class="ml-5">Food Items</h3>
+                </div>
+            </div>
+            <div class="row">
+                <table class="table table-striped" style="border:rgb(243,145,54) solid 2px; table-layout:fixed; width: 800px;">
+                    <thead>
+                        <th style="width:50px;">#</th>
+                        <th>Name of Food Item</th>
+                        <th style="width:200px;">Description</th>
+                        <th>Price</th>
+                        <th style="width:150px;">Created At</th>
+                        <th style="width:70px;" class="text-center">Update</th>
+                        <th style="width:70px;" class="text-center">Delete</th>
+                    </thead>
+                    <tbody>
+                        {% for f in foods %}
+                        <tr>
+                            <td>{{f.pk}}</td>
+                            <td>{{f.name}}</td>
+                            <td style="word-wrap:break-word;">{{f.description}}</td>
+                            <td>₱{{ f.price|floatformat:2 }}</td>
+                            <td>{{f.created_at}}</td>
+                            <td class="text-center"><a href="{% url 'update_food_item' pk=f.pk %}" class="btn">
+                                <img src="{% static '/images/update.png' %}" alt="" class="h-25p">
+                            </a></td>
+                            <td class="text-center"><a href="{% url 'confirm_delete_food' pk=f.pk %}" class="btn">
+                                <img src="{% static '/images/delete.png' %}" alt="" class="h-25p">
+                            </a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endblock %}
+    </body>
+</html>
