@@ -16,29 +16,29 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <!-- Instructions -->
+                        <!-- INSTRUCTIONS -->
                         <div class="text-center">
                             Kindly input on the following fields you would like to change:
                         </div>
 
                         <br>
-                        <!-- Form -->
+                        <!-- FORM -->
                         <form action="{% url 'update_food_item' pk=f.pk %}" method="POST"> {% csrf_token %}
                             <div class="col">
 
-                            <!-- Name of Dish -->
+                            <!-- NAME OF DISH -->
                             <label for="name"> <b>Name of Dish:</b> </label>
                             <input type="text" name="name" id="name" class="w-100 form-control" value="{{f.name}}" required>
 
                             <br>
 
-                            <!-- Description -->
+                            <!-- DESCRIPTION -->
                             <label for="description"> <b> Description: </b> </label>
                             <input type="text" name="description" id="description" class="w-100 form-control" value="{{f.description}}" required>
                             
                             <br>
 
-                            <!-- Price -->
+                            <!-- PRICE -->
                             <label for="price"> <b> Price: </b> </label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -49,7 +49,7 @@
 
                             <br>
 
-                                <!-- Submit Button -->
+                                <!-- SUBMIT BUTTON -->
                             <div class="row justify-content-center">
                                 <div class="col-6">
                                     <input type="submit" value="Update Food Item" class="btn btn-outline-info w-100">

@@ -11,13 +11,16 @@
         {% endblock %}
         {% block content %}
             <div class="row mb-3">
+                <!-- ADD ORDER BUTTON -->
                 <div class="col-4">
                     <a href="{% url 'add_order' %}" class="btn btn-outline-info">Add Order</a>
                 </div>
+                <!-- TITLE -->
                 <div class="col-8">
                     <h3 class="ml-5 pl-4">Orders</h3>
                 </div>
             </div>
+            <!-- DATA -->
             <div class="row">
                 <table class="table table-striped" style="border:rgb(243,145,54) solid 2px; table-layout:fixed; width: 800px;">
                     <thead>

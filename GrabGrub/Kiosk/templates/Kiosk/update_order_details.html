@@ -12,23 +12,27 @@
                 Order No.
             </div>
             <div class="row">
+                <!-- CARD -->
                 <div class="card shadow" style="width:500px;">
                     <div class="card-header bg-info text-white text-center">
                         <div class="row">
                             <div class="col-1">
                                 <div class="row">
+                                    
                                     <h2 class="ml-4">{{o.pk}}</h2>
                                 </div>
                             </div>
                             <div class="col-10">
                                 Customer
                                 <br>
+                                <!-- NAME OF CUSTOMER -->
                                 <h5 class="text-center">{{o.cust_order.name}}</h5>
                             </div>
                         </div>
                         
                     </div>
                     <div class="card-body">
+                        <!-- INSTRUCTIONS -->
                         <p class="text-center">Please update the following details:</p>
                         <div class="row justify-content-center mt-4">
                             <img src="{% static '/images/food_view.png' %}" alt="">
@@ -36,6 +40,7 @@
                         <div class="row">
                             <hr class="bg-dark w-25">
                         </div>
+                        <!-- NAME OF FOOD ITEM -->
                         <div class="row justify-content-center">
                             <h3>{{o.food.name}}</h3>
                         </div>
@@ -79,7 +84,6 @@
                                 </select>
                             </div>     
                         </div>
-                        <!-- BUTTONS -->
                         <div class="row justify-content-center justify-content-sm-around mt-4">
 
                             <!-- UPDATE ORDER BUTTON -->

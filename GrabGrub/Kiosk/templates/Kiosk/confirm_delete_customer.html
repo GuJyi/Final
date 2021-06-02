@@ -10,9 +10,10 @@
             <div class="row justify-content-center"></div>
         {% endblock %}
         {% block content %}
-
+        <!-- CARD -->
         <div class="card shadow mt-5" style="width:500px; border-radius: 25px;">
             <div class="card-header bg-danger text-center text-white" style="border-top-left-radius: 25px; border-top-right-radius:25px;">
+                <!-- PROMPT -->
                 <div class="row card-title justify-content-center">
                     Are you sure you want to delete
                 </div>
@@ -22,13 +23,16 @@
                     <div class="col mb-3">
                         customer
                         <br>
+                        <!-- CUSTOMER NAME -->
                         <h3>{{c.name}}?</h3> 
                     </div>
                 </div>
                 <div class="row justify-content-center">
+                    <!-- CONFIRM DELETE BUTTON -->
                     <div class="col-6">
                         <a href="{% url 'delete_customer' pk=c.pk %}" class="btn btn-outline-danger w-100">Confirm</a>
                     </div>
+                    <!-- CANCEL BUTTON -->
                     <div class="col-6">
                         <a href="{% url 'view_customers' %}" class="btn btn-outline-info w-100">Cancel</a>
                     </div>

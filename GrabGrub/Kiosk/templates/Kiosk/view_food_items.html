@@ -11,13 +11,16 @@
         {% endblock %}
         {% block content %}
             <div class="row mb-3">
+                <!-- ADD FOOD ITEM BUTTON -->
                 <div class="col-4">
                     <a href="{% url 'add_food_item' %}" class="btn btn-outline-info">Add Food Item</a>
                 </div>
+                <!-- TITLE -->
                 <div class="col-8">
                     <h3 class="ml-5">Food Items</h3>
                 </div>
             </div>
+            <!-- DATA -->
             <div class="row">
                 <table class="table table-striped" style="border:rgb(243,145,54) solid 2px; table-layout:fixed; width: 800px;">
                     <thead>

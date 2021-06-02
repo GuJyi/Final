@@ -12,9 +12,7 @@ def login(request):
         if(len(accountList)>0):
             verifyAccount = Account.objects.get(username = uname)
             if(pword == verifyAccount.getPassword()):
-                global userAccount
-                userAccount = verifyAccount
-                messages.info(request, "Successfully logged in account " + str(userAccount.getUsername()))
+                messages.info(request, "Successfully logged in account " + str(verifyAccount.getUsername()))
                 return redirect("homepage")
             else:
                 messages.error(request, "Invalid Login")
@@ -90,7 +88,7 @@ def update_order_details(request, pk):
         qty = request.POST.get("qty")
         payment_mode = request.POST.get("payment")
 
-        oldOrder = Order.objects.get(pk=pk)
+        oldOrder = get_object_or_404(Order, pk=pk)
 
         if(qty == str(int(oldOrder.getQuantity())) and payment_mode == oldOrder.getMode()):
             o = get_object_or_404(Order, pk=pk)
@@ -134,7 +132,7 @@ def update_food_item(request, pk):
             fobjectlower = fobject.getName().lower()
             flistlower.append(fobjectlower)
 
-        oldFood = Food.objects.get(pk=pk)
+        oldFood = get_object_or_404(Food, pk=pk)
 
         #If name is the same
         if(namelower == oldFood.getName().lower()):
@@ -220,7 +218,7 @@ def update_customer_details(request, pk):
             cobjectlower = cobject.getName().lower()
             clistlower.append(cobjectlower)
 
-        oldCustomer = Customer.objects.get(pk=pk)
+        oldCustomer = get_object_or_404(Customer, pk=pk)
         
         #If name is the same
         if(namelower == oldCustomer.getName().lower()):

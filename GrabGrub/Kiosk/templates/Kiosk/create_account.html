@@ -14,6 +14,7 @@
         </div>
         {% endblock %}
         {% block content %}
+        <!-- CARD -->
         <div class="login-card shadow">
             <div class="card-body">
                 <div class="row h-100 align-items-center">
@@ -21,20 +22,25 @@
                         <div class="row justify-content-center">
                             <h3>Create Account</h3>
                         </div>
+                        <!-- FORM -->
                         <form action="{% url 'create_account' %}" method="POST"> {% csrf_token %}
                             
+                            <!-- USERNAME -->
                             <div class="row justify-content-center m-3">
                                 <input type="text" name='username' id='username' placeholder="Enter username" class="form-control" required>
                             </div>
 
+                            <!-- PASSWORD -->
                             <div class="row justify-content-center m-3">
                                 <input type="password" name='password' id='password' placeholder="Enter your password" class="form-control" required>
                             </div>
 
+                            <!-- SIGN UP BUTTON -->
                             <div class="row justify-content-center m-3">
                                 <input type="submit" value="Sign Up" class="btn btn-info w-100">
                             </div>
 
+                            <!-- LOGIN BUTTON -->
                             <div class="row justify-content-center m-3">
                                 <a href="{% url 'login' %}" class="btn btn-warning w-100" >Log In</a>
                             </div>

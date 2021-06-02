@@ -16,37 +16,37 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <!-- Instructions -->
+                        <!-- INSTRUCTION -->
                         <div class="text-center">
                             Kindly input on the following fields you would like to change:
                         </div>
 
                         <br>
 
-                        <!-- Form -->
+                        <!-- FORM-->
                         <form action="{% url 'update_customer_details' pk=c.pk %}" method="POST"> {% csrf_token %}
                             <div class="col">
 
-                            <!-- Name of Dish -->
+                            <!-- NAME OF DISH -->
                             <label for="name"> <b>Name:</b> </label>
                             <input type="text" name="name" id="name" class="w-100 form-control" value="{{c.name}}" required>
 
                             <br>
 
-                            <!-- Description -->
+                            <!-- DESCRIPTION -->
                             <label for="address"> <b> Address: </b> </label>
                             <input type="text" name="address" id="address" class="w-100 form-control" value="{{c.address}}" required>
                             
                             <br>
                             
-                            <!-- City -->
+                            <!-- CITY -->
                             <label for="city">City: </label>
                             <input type="text" name="city" id="city" class="w-100 form-control" value="{{c.city}}" required>
 
 
                             <br>
 
-                            <!-- Submit Button -->
+                            <!-- SUBMIT BUTTON -->
                             <div class="row justify-content-center">
                                 <div class="col-6">
                                     <input type="submit" value="Update Details" class="btn btn-outline-info w-100">

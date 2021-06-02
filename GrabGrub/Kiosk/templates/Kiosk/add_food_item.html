@@ -15,29 +15,29 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col mb-3">
-                        <!-- Instructions -->
+                        <!-- INSTRUCTIONS -->
                         <div class="text-center">
                             Input the following details to add your food item:
                         </div>
 
                         <br>
-                        <!-- Form -->
+                        <!-- FORM -->
                         <form action="{% url 'add_food_item' %}" method="POST"> {% csrf_token %}
                             <div class="col">
 
-                            <!-- Name of Dish -->
+                            <!-- NAME OF DISH -->
                             <label for="name"> <b>Name of Dish:</b> </label>
                             <input type="text" name="name" id="name" class="w-100 form-control" required>
 
                             <br>
 
-                            <!-- Description -->
+                            <!-- DESCRIPTION -->
                             <label for="description"> <b> Description: </b> </label>
                             <input type="text" name="description" id="description" class="w-100 form-control" required>
                             
                             <br>
 
-                            <!-- Price -->
+                            <!-- PRICE -->
                             <label for="price"> <b> Price: </b> </label>
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -48,7 +48,7 @@
 
                             <br>
 
-                                <!-- Submit Button -->
+                                <!-- SUBMIT BUTTON -->
                             <div class="row justify-content-center m">
                                 <div class="col-6">
                                     <input type="submit" value="Add Food Item" class="btn btn-outline-info w-100">
