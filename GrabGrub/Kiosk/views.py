@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Account, Food, Customer, Order
+from .models import User, Food, Customer, Order
 from datetime import datetime
 
 # LOGIN AND SIGN UP
@@ -8,9 +8,9 @@ def login(request):
     if(request.method == "POST"):
         uname = request.POST.get('username')
         pword = request.POST.get('password')
-        accountList = Account.objects.filter(username = uname)
+        accountList = User.objects.filter(username = uname)
         if(len(accountList)>0):
-            verifyAccount = Account.objects.get(username = uname)
+            verifyAccount = User.objects.get(username = uname)
             if(pword == verifyAccount.getPassword()):
                 messages.info(request, "Successfully logged in account " + str(verifyAccount.getUsername()))
                 return redirect("homepage")
@@ -27,13 +27,13 @@ def create_account(request):
     if(request.method == "POST"):
         uname = request.POST.get('username')
         pword = request.POST.get('password')
-        accountList = Account.objects.filter(username = uname)
+        accountList = User.objects.filter(username = uname)
         if(len(accountList) > 0):
             messages.error( request, "Username is taken")
             return render(request, "Kiosk/create_account.html")
         else:
             messages.info(request, "Successfully created account!")
-            Account.objects.create(username = uname, password = pword)
+            User.objects.create(username = uname, password = pword)
             return redirect("login")
     else:
         return render(request, "Kiosk/create_account.html")
