@@ -189,12 +189,12 @@ def add_food_item(request):
                 flistlower.append(fobjectlower)
         
         if(len(flistlower) > 0):
-            messages.error(request, "Dish already exists")
+            messages.error(request, "Food item already exists")
             return render(request, "Kiosk/add_food_item.html")
         
         else:
             Food.objects.create(name=name, description=description, price=price, created_at=created_at)
-            messages.error(request, "Dish already exists")
+            messages.info(request, "Successfully added food item")
             return redirect('view_food_items')
 
     else:
