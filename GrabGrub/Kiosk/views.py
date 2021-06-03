@@ -194,6 +194,7 @@ def add_food_item(request):
         
         else:
             Food.objects.create(name=name, description=description, price=price, created_at=created_at)
+            messages.error(request, "Dish already exists")
             return redirect('view_food_items')
 
     else:

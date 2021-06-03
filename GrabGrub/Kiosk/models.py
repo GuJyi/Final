@@ -68,5 +68,5 @@ class Order(models.Model):
         return self.qty
 
     def __str__(self):
-        return f"{self.pk}: Order {self.food.pk}: {self.food.getName()} ({self.qty}). For {self.cust_order.getName()}: {self.cust_order.getAddress()}, {self.cust_order.getCity()}. {self.payment_mode}, ordered at {self.ordered_at}"
+        return f"{self.pk}: Order {self.pk}: {self.food.getName()} ({self.qty}). For {self.cust_order.getName()}: {self.cust_order.getAddress()}, {self.cust_order.getCity()}. {self.payment_mode}, ordered at {self.ordered_at}"
 
